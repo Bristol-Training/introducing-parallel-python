@@ -233,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./pages/300-multi-node-parallel-programming.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multi-node (distributed/cluster) Parallel Programming</span></a>
+ <span class="menu-text">Distributed Parallel Programming</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -302,17 +302,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Welcome to a short course that will teach you how to write Python scripts that can take advantage of the processing power of multicore processors and large compute clusters. While this course is based on Python, the core ideas of functional programming and parallel functional programming are applicable to a wide range of languages.</p>
-<p>To follow this course you should already have a good basic understanding of Python, e.g.&nbsp;loops, functions, containers and classes. This course will rely on you understanding the material presented in the <a href="https://milliams.com/courses/beginning_python">Beginning Python</a> and <a href="https://milliams.com/courses/intermediate_python">Intermediate Python</a> courses.</p>
+<p>To follow this course you should already have a good basic understanding of Python, e.g.&nbsp;loops, functions, and classes. This course will rely on you understanding the material presented in the <a href="https://bristol-training.github.io/beginning-python">Beginning Python</a> and <a href="https://bristol-training.github.io/intermediate-python">Intermediate Python</a> courses.</p>
 <p>This is a short course that will give you a taste of functional programming and how it can be used to write efficient parallel code. Please work through the course at your own pace. Python is best learned by using it, so please copy out and play with the examples provided, and also have a go at the exercises.</p>
-<p>=========== This course is aimed at the Python developer who wants to learn how to do useful data analysis tasks. Over the years, Python has become a very popular tool for analysing data. These days it comes with support from many tools to do machine learning, data querying, neural networks and exploratory analysis. In this course we will investigate the use of <code>scikit-learn</code> for machine learning to discover things about whatever data may come across your desk.</p>
 <p>For the purpose of this course we will be using a free tool called JupyterLab which provides you with a local editor and Python terminal in your web browser. Setting up instructions can be found <a href="&quot;pages/001-workspace-setup.qmd&quot;">here</a>.</p>
 <section id="intended-learning-outcomes" class="level4">
 <h4 class="anchored" data-anchor-id="intended-learning-outcomes">Intended learning outcomes</h4>
 <p>By the end of this course, you will:</p>
 <ul>
-<li>Know how to use Jupyter Notebooks.</li>
-<li>Be familiar with <code>scikit-learn</code> and <code>seaborn</code>.</li>
-<li>Know how to perform simple machine learning tasks.</li>
+<li>Be familiar with functional programming.</li>
+<li>Know how to run parallel map-reduce.</li>
 </ul>
 </section>
 <section id="how-to-read-this-documentation" class="level3">
@@ -320,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In this documentation, any time that we are seeing a small snippet of Python code, we’ll see it written in a grey box like the following:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello, Python"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If the commands are executed by the machine we will see the output of them below enclosed on a vertical purple line:</p>
-<div id="dc97a1d0" class="cell" data-execution_count="1">
+<div id="91dd8a58" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello, Python!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Hello, Python!</code></pre>
@@ -490,7 +488,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/Bristol-Training\.github\.io\/introducing-parallel-python\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
