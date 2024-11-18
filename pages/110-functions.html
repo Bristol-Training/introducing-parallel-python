@@ -304,20 +304,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Functional programming is based on treating a function in the same way as you would a variable or object. So, to start, we should first create a function. This will be a simple function that just adds together two numbers. Please type in the Python Console:</p>
-<div id="d4593d55" class="cell" data-execution_count="1">
+<div id="090e6ca4" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add(x, y):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Simple function returns the sum of the arguments"""</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This is a very simple function that just returns the sum of its two arguments. Call the function using, e.g.</p>
-<div id="5f6023e6" class="cell" data-execution_count="2">
+<div id="8f826733" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>add(<span class="dv">3</span>, <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>10</code></pre>
 </div>
 </div>
 <p>In functional programming, a function is treated in exactly the same way as a variable or an object. This means that a function can be assigned to a variable, e.g.&nbsp;type</p>
-<div id="9a3498eb" class="cell" data-execution_count="3">
+<div id="f24d772f" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> add</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>a(<span class="dv">3</span>, <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -325,15 +325,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>We see the same output. Here, we have assigned the function <code>add</code> to the variable <code>a</code>. So how does this work?</p>
-<p>For variables, you should be comfortable with the idea that a variable refers to a piece of data. For functional programming, the code of a function is also treated like a piece of data. The code</p>
-<div id="757c5712" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add(x, y):</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Simple function returns the sum of the arguments"""</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For variables, you should be comfortable with the idea that a variable refers to a piece of data. For functional programming, the code of a function is also treated like a piece of data. The <code>add</code> function code creates a new piece of data (the code to add together <code>x</code> and <code>y</code>), and creates a new name <code>add</code> which points to that code. When we then typed</p>
+<div id="3ba3c6ff" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> add</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>function</code></pre>
 </div>
-<p>creates a new piece of data (the code to add together <code>x</code> and <code>y</code>), and creates a new name <code>add</code> which points to that code. When we then typed</p>
-<div id="e68baddb" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> add</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>we created a new variable <code>a</code> which refers to the same piece of code data that <code>add</code> pointed to. Now both <code>a</code> and <code>add</code> or point to the same data, i.e.&nbsp;the same code that adds together the two arguments (e.g.&nbsp;<code>add(3, 7)</code> and <code>a(3, 7)</code> will call the same code, and give the same result).</p>
 <p>This means that “function” is a type, in the same way that “integer”, “string” and “floating point number” are types.</p>
@@ -350,15 +348,15 @@ add.__code__          add.__get__           add.__name__          add.__sizeof__
 add.__defaults__      add.__getattribute__  add.__new__           add.__str__
 add.__delattr__       add.__globals__       add.__reduce__        add.__subclasshook__</code></pre>
 <p>This is the list of properties (functions and variables) of a function. The most interesting variables are <code>__name__</code> and <code>__doc__</code>. Try typing</p>
-<div id="75f161e9" class="cell" data-execution_count="6">
+<div id="24401361" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>add.<span class="va">__name__</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>'add'</code></pre>
 </div>
 </div>
-<div id="b345f5d1" class="cell" data-execution_count="7">
+<div id="7d4cd9c7" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>add.__doc__</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>'Simple function returns the sum of the arguments'</code></pre>
 </div>
 </div>
@@ -367,7 +365,7 @@ add.__delattr__       add.__globals__       add.__reduce__        add.__subclass
 <section id="functions-as-arguments" class="level3">
 <h3 class="anchored" data-anchor-id="functions-as-arguments">Functions as Arguments</h3>
 <p>As well as assigning functions to variables, you can also pass functions as arguments. Type this into the Console:</p>
-<div id="02decf13" class="cell" data-execution_count="8">
+<div id="22f86f9d" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> call_function(func, arg1, arg2):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Simple function that calls the function 'func' with  </span></span>
@@ -376,13 +374,13 @@ add.__delattr__       add.__globals__       add.__reduce__        add.__subclass
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> func(arg1, arg2)</span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>call_function(add, <span class="dv">3</span>, <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>10</code></pre>
 </div>
 </div>
 <p>The function <code>call_function</code> takes three arguments. The first is the function to be called. The second two arguments are the arguments that will be passed to that function. The code in <code>call_function</code> simply calls <code>func</code> using the arguments <code>arg1</code> and <code>arg2</code>. So far, so useless…</p>
 <p>However, let us now create another function, called <code>diff</code>:</p>
-<div id="511305a9" class="cell" data-execution_count="9">
+<div id="aa0a5e81" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> diff(x, y):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Simple function that returns the difference of</span></span>
@@ -391,15 +389,15 @@ add.__delattr__       add.__globals__       add.__reduce__        add.__subclass
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">-</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and then type</p>
-<div id="71bbb99b" class="cell" data-execution_count="10">
+<div id="74ecc6a6" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>call_function(diff, <span class="dv">9</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>7</code></pre>
 </div>
 </div>
 <p>Now we have passed the function <code>diff</code> to <code>call_function</code>, and so <code>func(arg1, arg2)</code> has used the code contained in <code>diff</code>, e.g.&nbsp;calculating the difference of the two numbers.</p>
 <p>You are probably now wondering how has this helped? Well, let us now change <code>call_function</code>:</p>
-<div id="1479622d" class="cell" data-execution_count="11">
+<div id="10879754" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> call_function(func, arg1, arg2):</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Simple function that returns the difference of</span></span>
@@ -410,23 +408,23 @@ add.__delattr__       add.__globals__       add.__reduce__        add.__subclass
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"The result is </span><span class="sc">{</span>result<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="22bd4162" class="cell" data-execution_count="12">
+<div id="e6013ee0" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>call_function(add, <span class="dv">3</span>, <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Calling function add with arguments 3 and 7.
 The result is 10</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>10</code></pre>
 </div>
 </div>
-<div id="e8bb5912" class="cell" data-execution_count="13">
+<div id="0224d145" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>call_function(diff, <span class="dv">9</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Calling function diff with arguments 9 and 2.
 The result is 7</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>7</code></pre>
 </div>
 </div>
