@@ -66,15 +66,10 @@ mapper(add, a, b)
 ```
 
 
-Now type
-
-
 ```{python}
 mapper(multiply, a, b)
 ```
 
-
-Can you see how this works?
 
 The `mapper` function takes as its first argument the function to be mapped. The other arguments are the two lists of data for the mapping. The part `zip(arg1, arg2)` takes the two arguments and returns an interator which can go through them both at the same time. As soon as one of them runs out of elements, it will stop. The `mapper` function then loops through each of these pairs of data, calling `func` for each pair, and storing the result in the list `res`. This is then returned at the end.
 
@@ -221,7 +216,6 @@ Is this output what you expect?
 
 
 ::: {#exampleN .callout-note icon=false title='Exercise'}
-
 Download and unpack the file `shakespeare.tar.bz2`, e.g. type into a Python Console:
 
 ```{.python}
