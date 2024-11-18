@@ -1,5 +1,5 @@
 ---
-title:  Multi-node (distributed/cluster) Parallel Programming
+title:  Distributed Parallel Programming
 ---
 
 Python comes with built-in support for parallelising scripts locally over the compute cores of a single computer. However, as yet, there is no in-built support for parallelising scripts over the nodes of a cluster, e.g. distributed parallel programming.
