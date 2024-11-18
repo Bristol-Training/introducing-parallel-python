@@ -2,6 +2,9 @@
 title: Workspace setup
 ---
 
+FILE: <https://github.com/Bristol-Training/introducing-parallel-python/blob/ecc76aedc65dc3c3c1aaf19017d27a13382cd1cc/data/shakespeare.tar.bz2>
+
+
 For the purpose of this course we recommend using a free tool called JupyterLab which provides you with a local editor in your web browser where you can write and run Python code. The easiest way to get access to JupyterLab is to [install Anaconda](https://www.anaconda.com/products/individual#Downloads) which is a piece of software which includes Python along with lots of other tools. It is freely available for Windows, MacOS and Linux.
 
 Anaconda can be installed into your home area on your computer so if you are on a work laptop, for example, you will not need any special permissions. Once Anaconda is installed, start "Anaconda Navigator" and press the JupyterLab button on the main screen:
