@@ -32,18 +32,11 @@ a(3, 7)
 
 We see the same output. Here, we have assigned the function `add` to the variable `a`. So how does this work?
 
-For variables, you should be comfortable with the idea that a variable refers to a piece of data. For functional programming, the code of a function is also treated like a piece of data. The code
-
-```{python}
-def add(x, y):
-    """Simple function returns the sum of the arguments"""
-    return x + y
-```
-
-creates a new piece of data (the code to add together `x` and `y`), and creates a new name `add` which points to that code. When we then typed
+For variables, you should be comfortable with the idea that a variable refers to a piece of data. For functional programming, the code of a function is also treated like a piece of data. The `add` function code creates a new piece of data (the code to add together `x` and `y`), and creates a new name `add` which points to that code. When we then typed
 
 ```{python}
 a = add
+type(a)
 ```
 
 we created a new variable `a` which refers to the same piece of code data that `add` pointed to. Now both `a` and `add` or point to the same data, i.e. the same code that adds together the two arguments (e.g. `add(3, 7)` and `a(3, 7)` will call the same code, and give the same result).
