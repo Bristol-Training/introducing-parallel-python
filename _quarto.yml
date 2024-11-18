@@ -1,0 +1,67 @@
+project:
+  type: website
+  execute-dir: project
+
+jupyter: python3
+
+resources:
+  - "data/*"
+  - "img/*"
+
+website:
+  title: "Introducing Parallel Python"
+  page-navigation: true
+
+  sidebar: 
+    title: "Introducing Parallel Python"
+    logo: "assets/UoB_RGB_24.png"
+    align: center
+    logo-alt: "University of Bristol logo"
+    style: "docked"
+    border: true
+    contents: 
+      - index.qmd
+      - pages/001-workspace-setup.qmd
+      - section: "pages/100-functional-programming.qmd"
+        contents:
+          - "pages/110-functions.qmd"
+          - "pages/120-map.qmd"
+          - "pages/130-reduce.qmd"
+          - "pages/140-lambdas.qmd"
+
+      - section: "pages/200-multicore-programming.qmd"
+        contents:
+          - "pages/210-multiprocessing.qmd"
+          - "pages/220-pool.qmd"
+          - "pages/230-map-reduce.qmd"
+          - "pages/240-futures.qmd"
+          - "pages/250-asynchronous-mapping.qmd"
+
+      - section: "pages/300-multi-node-parallel-programming.qmd"
+        contents:
+          - "pages/310-distributed-map-reduce.qmd"
+          - "pages/320-built-in-functions.qmd"
+
+      - "pages/980-summary.qmd"
+      - "pages/990-contributors.qmd"
+
+
+  page-footer:
+     left: "[Jean Golding Institute](https://www.bristol.ac.uk/golding/) © [CC-BY 4.0](http://creativecommons.org/licenses/by/4.0/)"  
+  repo-url: https://github.com/uob-training/introducing-parallel-python
+  repo-actions: [edit, issue]
+
+format:
+  html:
+    theme: [cosmo, styles.scss]
+    toc: true
+    shift-heading-level-by: 1
+    highlight-style: github
+
+    # code-line-numbers: true
+execute:
+  freeze: auto
+  error: true
+
+
+

@@ -1,0 +1,151 @@
+---
+title: Anonymous Functions (lambda)
+---
+
+You have seen how functional programming allows you to write functions that can be used for mapping and reducing data. However, to date, this hasn’t saved you from typing much code. This is because you have had to declare every function that you want to use, i.e. you had to use syntax such as:
+
+
+```{python}
+def add(x, y):
+    return x + y
+```
+
+to both provide the code to the function (`return x + y`) and also to assign that function to an initial variable (`add`).
+
+Anonymous functions (also called lambdas) allow you to declare the code for functions without having to assign them to a variable. They are used for short, one-line functions, such as the `add` function used above:
+
+
+```{python}
+a = [1, 2, 3, 4, 5]
+b = [6, 7, 8, 9, 10]
+
+total = map(lambda x, y: x + y, a, b)
+
+list(total)
+```
+
+
+
+This code has used `lambda` to create an anonymous function that is passed as an argument to `map`. The format of `lambda` is:
+
+```{.python}
+lambda arguments: expression
+```
+
+where `arguments` is a comma separated list of arguments to the function, and `expression` is a single line of code. Note that this function will automatically return the result of this single line of code.
+
+Anonymous `lambda` functions are just like any other function. The only difference is that they have been created without being initially assigned to a variable. The unnamed function object created using
+
+```{.python}
+lambda arguments: expression
+```
+
+is completely identical to
+
+```{.python}
+def name(arguments):
+    return expression
+```
+
+except that the `def` version assigns this function object to a variable called `name`, while the `lambda` version creates the function object without assigning it to a variable.
+
+To understand the example we had above, it takes two arguments, `x` and `y`:
+
+```{.python}
+#      ↓  ↓
+lambda x, y: x + y
+```
+
+and returns the result of the expression `x + y`.
+
+You use `lambda` whenever you want to pass a simple, one-line expression as an argument:
+
+
+```{python}
+from functools import reduce
+
+a = [1, 2, 3, 4, 5]
+
+reduce(lambda x, y: x * y, a)
+```
+
+
+
+
+```{python}
+squares = map(lambda x: x * x, a)
+
+list(squares)
+```
+
+
+
+## Binding Arguments
+
+As well as using `lambda` to create functions as arguments, you can also use `lambda` to more quickly create simple functions:
+
+
+```{python}
+square = lambda x: x * x
+
+square(5)
+```
+
+
+
+Here you have created a simple function that accepts one argument, and returns that argument squared. You have immediately assigned this function to the variable `square`, allowing you to call this function via this variable.
+
+With `lambda`, you are limited to using this to create functions that have only a single expression (i.e. single line of code). However, this single expression can include a call to another function. This can allow you to quickly create specialised versions of more generic functions by binding their arguments:
+
+
+```{python}
+def add(x, y):
+    """Return the sum of the two arguments"""
+    return x + y
+
+plus_five = lambda x: add(x, 5)
+
+plus_five(7)
+```
+
+
+
+Here, we have created a new function that takes a single argument (`x`), and that only calls the function `add` with arguments `x` and `5`. This is assigned to the variable `plus_five`. This means that `plus_five` is now a function that takes a single argument, and returns the result of adding five to that argument.
+
+In this example, we have used `lambda` to bind the value of the second argument of `add` to the number `5`. The use of `lambda` has reduced the amount of code needed to create the `plus_five` function. Compare this to what is needed if we didn’t use lambda:
+
+
+```{python}
+def plus_five(x):
+    return add(x, 5)
+
+plus_five(7)
+```
+
+
+
+
+The saving is more useful when we want to create specialised functions for mapping or reduction:
+
+
+```{python}
+def multiply(x, y):
+    """Return the product of the two arguments"""
+    return x * y
+
+a = [1, 2, 3, 4, 5]
+
+double_a = map(lambda x: multiply(x, 2), a)
+
+list(double_a)
+```
+
+
+::: {#exampleN .callout-note icon=false title='Exercise'}
+Rewrite your `countlines.py` script so that it uses `lambda` instead of any defined function (e.g. you should replace the `add` function).
+:::
+
+
+::: {#answerN .callout-caution icon=false title='Answer' collapse="true"}
+{{< include answer_shakespeare_lambda.qmd >}}
+:::

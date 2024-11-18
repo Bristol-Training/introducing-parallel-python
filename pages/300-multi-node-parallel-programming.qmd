@@ -1,0 +1,23 @@
+---
+title:  Multi-node (distributed/cluster) Parallel Programming
+---
+
+Python comes with built-in support for parallelising scripts locally over the compute cores of a single computer. However, as yet, there is no in-built support for parallelising scripts over the nodes of a cluster, e.g. distributed parallel programming.
+
+Fortunately, there are several third party libraries that are beginning to appear that support distributed clusters, e.g. MPI4Py, *IPython Parallel*, *Dask* and *Parallel Python*. Most of these are based on the concepts of mapping, asynchronous functions, futures, and functional programming, so you should find that the concepts you have learned in parts 1 and 2 will be useful as you explore the developing ecosystem of distributed parallel Python libraries.
+
+In this part, we will take a quick look at one such library, called MPI4Py.
+
+## MPI4Py
+
+MPI4Py is an actively developed third-party Python module that supports running parallel Python scripts across clouds, distributed compute clusters, HPC machines etc.
+
+If you are running Python on your own computer, then you can install MPI4Py using either:
+- `pip install mpi4py` if you have installed `pip`
+- `conda install -c anaconda mpi4py` if you are using Anaconda Python or use the Environments tab in Anaconda Navigator.
+
+Note that in order to install this library though `pip`, you will need to install the MPI libraries as well. Anaconda can install them for you automatically.
+
+For more information regarding installing the library on your own computer, see [the official documentation](https://mpi4py.readthedocs.io/en/stable/install.html).
+
+If you are using Python installed on a cluster, then MPI4Py should already have been installed for you (if not, email your cluster systems administrator).

@@ -1,0 +1,143 @@
+```{python}
+%%writefile countwords.py
+
+import re
+import sys
+
+from functools import reduce
+from pathlib import Path
+from concurrent.futures import ProcessPoolExecutor
+
+def count_words(file):
+    """
+    Count the number of times every word in `file` occurs.
+
+    Args:
+        file (Path): the file to count the words in
+
+    Returns:
+        dict: a mapping of word to count
+    """
+
+    all_words = {}
+
+    text = file.read_text()
+    words = text.split()
+
+    for word in words:
+        #lowercase the word and remove all
+        #characters that are not [a-z] or hyphen
+        word = word.lower()
+        match = re.search(r"([a-z\-]+)", word)
+
+        if match:
+            word = match.groups()[0]
+
+            if word in all_words:
+                all_words[word] += 1
+            else:
+                all_words[word] = 1
+
+    return all_words
+
+
+def reduce_dicts(dict1, dict2):
+    """
+    Combine (reduce) the passed two dictionaries to return
+    a dictionary that contains the keys of both, where the
+    values are equal to the sum of values for each key
+    """
+
+    # explicitly copy the dictionary, as otherwise
+    # we risk modifying 'dict1'
+    combined = {}
+
+    for key in dict1:
+        combined[key] = dict1[key]
+
+    for key in dict2:
+        if key in combined:
+            combined[key] += dict2[key]
+        else:
+            combined[key] = dict2[key]
+
+    return combined
+
+if __name__ == "__main__":
+    files = sorted(Path("shakespeare").glob("*"))
+
+    with ProcessPoolExecutor() as pool:
+        results = pool.map(count_words, files, chunksize=5)
+
+    words = reduce(reduce_dicts, results)
+
+    for key in sorted(words.keys()):
+        if words[key] > 2000:
+            print(f"{key} == {words[key]}")
+```
+
+    Writing countwords.py
+
+
+
+```{python}
+import urllib
+import tarfile
+
+urllib.request.urlretrieve("https://github.com/uob-training/introducing-parallel-python/data/shakespeare.tar.bz2", "shakespeare.tar.bz2")
+with tarfile.open("shakespeare.tar.bz2") as tar:
+    tar.extractall()
+```
+
+
+```bash
+python -u countwords.py shakespeare
+```
+
+    a == 10737
+    all == 2687
+    and == 17573
+    are == 2530
+    as == 4097
+    be == 4859
+    but == 4505
+    by == 2584
+    do == 2944
+    for == 5395
+    good == 2075
+    have == 4425
+    he == 5005
+    her == 3249
+    him == 3829
+    his == 4419
+    i == 16856
+    if == 2598
+    in == 7624
+    is == 6851
+    it == 5894
+    lord == 2071
+    me == 5674
+    my == 8380
+    no == 2784
+    not == 6323
+    o == 2316
+    of == 11332
+    on == 2204
+    shall == 2441
+    she == 2155
+    sir == 2527
+    so == 3574
+    that == 8006
+    the == 19443
+    thee == 2196
+    this == 4627
+    thou == 3719
+    thy == 2465
+    to == 13615
+    we == 2497
+    what == 3608
+    will == 3634
+    with == 5280
+    you == 11108
+    your == 4832
+

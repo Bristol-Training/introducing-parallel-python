@@ -1,0 +1,126 @@
+---
+title:  Built-in functions
+---
+
+## Operators
+
+Throughout the course today we have written several function which perform simple tasks such as:
+
+```{python}
+def add(x, y):
+    """Function to return the sum of the two arguments"""
+    return x + y
+
+def product(x, y):
+    """Function to return the product of the two arguments"""
+    return x * y
+
+def square(x):
+    """Function to return the square of the argument"""
+    return x * x
+```
+
+We had to do this since functional programming requires the passing of the names of real functions. We can't for example do:
+
+```{.python}
+map(*, a, b)
+```
+
+and expect it to multiply together the lists' elements. In our case we instead had to pass in our defined function `product` which takes two arguments:
+
+```{.python}
+map(product, a, b)
+```
+
+Since using mathematical operations in a functional context is very common in Python, it already provides functions which implement the operators in [a module called `operator`](https://docs.python.org/3/library/operator.html):
+
+
+```{python}
+import operator
+
+operator.mul(5, 7)
+```
+
+
+
+which means that we can use them in our `map`s, `ProcessPoolExecutor.map`s and `reduce`s:
+
+
+```{python}
+a = [1, 2, 3]
+b = [4, 5, 6]
+
+list(map(operator.mul, a, b))
+```
+
+
+
+
+```{python}
+list(map(operator.pow, a, b))
+```
+
+
+These functions can be used in reductions too:
+
+
+```{python}
+from functools import reduce
+
+reduce(operator.mul, [1, 2, 3, 4])
+```
+
+
+
+::: {#example1 .callout-note icon=false title='Exercise'}
+Take the answer to the first exercise in the [Parallel map/reduce](Map Reduce.qmd#Exercise) where we created `countlines.py` ([solution here](answer_shakespeare_multi.qmd)) and rewrite the line
+
+```{.python}
+total = reduce(lambda x, y: x + y, play_line_count)
+```
+
+to use the correct function from the `operator` module.
+:::
+
+::: {#answerN .callout-caution icon=false title='Answer' collapse="true"}
+{{< include answer_countlines_operator.qmd >}}
+:::
+
+
+
+## Reductions
+
+Another common thing we did with our results was to `reduce` them down to a single value by adding them together. We did this with:
+
+```{python}
+reduce(lambda x, y: x + y, [1, 2, 3, 4])
+```
+
+
+This is such a common thing to do that Python has a built-in function to add together all the numbers in a sequence, `sum`:
+
+```{python}
+sum([1, 2, 3, 4])
+```
+
+
+
+The documentation for this function is at [built-in functions](https://docs.python.org/3/library/functions.html) and there are a few other reduction functions such as `min`, `max`, `any` and `all`. Most reduction functions are simple and there's nothing wrong with writing your own but if there's already one provided by Python then it's probably worth using it.
+
+::: {#example2 .callout-note icon=false title='Exercise'}
+Edit `countlines.py` again to use the `sum` function in-place of the custom reduction.
+:::
+
+::: {#answerN .callout-caution icon=false title='Answer' collapse="true"}
+{{< include answer_countlines_sum.qmd >}}
+:::
+
+
+
+::: {#example3 .callout-note icon=false title='Exercise'}
+Using a reduction function from [the `statistics` module](https://docs.python.org/3/library/statistics.html), edit `countlines.py` to also print the average of the number of lines per file at the end of the program.
+:::
+
+::: {#answerN .callout-caution icon=false title='Answer' collapse="true"}
+{{< include answer_countlines_mean.qmd >}}
+:::

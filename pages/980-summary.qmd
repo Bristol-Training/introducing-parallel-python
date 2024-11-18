@@ -1,0 +1,11 @@
+---
+title: Summary
+---
+
+
+You’ve now learned the basics of functional programming, and how to write parallel Python scripts that can run across the cores of your desktop, or across the processors of a distributed or HPC cluster.
+
+If you want to learn more then take a look at the documentation for the in-built Python modules [`multiprocessing`](https://docs.python.org/3/library/multiprocessing.html) and [`concurrent.futures`](https://docs.python.org/3/library/concurrent.futures.html).
+
+The [MPI4Py documentation](https://mpi4py.readthedocs.io) will give you a lot of detail on making more advanced parallel Python programs.
+

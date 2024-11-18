@@ -1,0 +1,56 @@
+---
+title:  Parallel Python
+---
+
+
+Python has many libraries available to help you parallelise your scripts across the cores of a single multicore computer. The traditional option is the [`multiprocessing`](https://docs.python.org/3/library/multiprocessing.html) library but since Python 3.2 (2011) the [`concurrent.futures`](https://docs.python.org/3/library/concurrent.futures.html) module has provided a consistent interface to many ways of running code in parallel.
+
+You can find all the details of how to use these features in Python in the [the official documentation page for `concurrent.futures`](https://docs.python.org/3/library/concurrent.futures.html) and some under-the-hood details in [the `multiprocessing` documentation](https://docs.python.org/3/library/multiprocessing.html).
+
+One of the first thing to understand is what your computer hardware is capable of, primarily, how many CPU cores it has. Python provides a function in the `os` module called [`cpu_count`](https://docs.python.org/3/library/os.html?#os.cpu_count) which returns the number of CPUs (computer cores) available on your computer to be used for a parallel program:
+
+
+```{python}
+import os
+
+os.cpu_count()
+```
+
+
+
+
+Nearly all modern computers have several processor cores, so you should see that you have at least 2, and perhaps as many as 40 available on your machine. Each of these cores is available to do work, in parallel, as part of your Python script. For example, if you have two cores in your computer, then your script should ideally be able to do two things at once. Equally, if you have forty cores available, then your script should ideally be able to do forty things at once.
+
+`concurrent.futures` provides a number of ways of running your code in parallel and in this course we will be focussing on its *process pool executor* which allows your script to do lots of things at once by actually running multiple copies of your script in parallel, with (normally) one copy per processor core on your computer. One of these copies is known as the master copy, and is the one that is used to control all of the worker copies. Because of this, Python code has to be written into a text file and executed using the Python interpreter. It is not recommended to try to run a parallel Python script interactively, e.g. via IPython, the Python Console or Jupyter notebooks.
+
+In addition, because it achieves parallelism by running multiple copies of your script, it forces you to write it in a particular way. All imports should be at the top of the script, followed by all function and class definitions. This is to ensure that all copies of the script have access to the same modules, functions and classes. Then, you should ensure that only the master copy of the script runs the code by protecting it behind an `if __name__ == "__main__"` statement.
+
+An example (non-functional) script is shown below:
+
+```{.python}
+# all imports should be at the top of your script
+import concurrent.futures
+import os
+import sys
+
+# all function and class definitions must be next
+def add(x, y):
+    """Function to return the sum of the two arguments"""
+    return x + y
+
+def product(x, y):
+    """Function to return the product of the two arguments"""
+    return x * y
+
+if __name__ == "__main__":
+    # You must now protect the code being run by
+    # the master copy of the script by placing it
+    # in this block
+
+    a = [1, 2, 3, 4, 5]
+    b = [6, 7, 8, 9, 10]
+
+    # Now write your parallel code...
+    etc. etc.
+```
+

@@ -1,0 +1,85 @@
+---
+title: Introduction
+jupyter: python3
+---
+
+
+Welcome to a short course that will teach you how to write Python scripts that can take advantage of the processing power of multicore processors and large compute clusters. While this course is based on Python, the core ideas of functional programming and parallel functional programming are applicable to a wide range of languages.
+
+To follow this course you should already have a good basic understanding of Python, e.g. loops, functions, containers and classes. This course will rely on you understanding the material presented in the [Beginning Python](https://milliams.com/courses/beginning_python) and [Intermediate Python](https://milliams.com/courses/intermediate_python) courses.
+
+This is a short course that will give you a taste of functional programming and how it can be used to write efficient parallel code. Please work through the course at your own pace. Python is best learned by using it, so please copy out and play with the examples provided, and also have a go at the exercises.
+
+===========
+This course is aimed at the Python developer who wants to learn how to do useful data analysis tasks. Over the years, Python has become a very popular tool for analysing data. These days it comes with support from many tools to do machine learning, data querying, neural networks and exploratory analysis. In this course we will investigate the use of `scikit-learn` for machine learning to discover things about whatever data may come across your desk.
+
+For the purpose of this course we will be using a free tool called JupyterLab which provides you with a local editor and Python terminal in your web browser. Setting up instructions can be found [here]("pages/001-workspace-setup.qmd").
+
+
+### Intended learning outcomes
+
+By the end of this course, you will:
+
+- Know how to use Jupyter Notebooks.
+- Be familiar with `scikit-learn` and `seaborn`.
+- Know how to perform simple machine learning tasks.
+
+
+
+
+## How to read this documentation
+
+In this documentation, any time that we are seeing a small snippet of Python code, we'll see it written in a grey box like the following:
+
+```{.python}
+print("Hello, Python")
+```
+
+If the commands are executed by the machine we will see the output of them below enclosed on a vertical purple line:
+
+```{python}
+print("Hello, Python!")
+```
+
+By contrast, you will see larger peces of code as scripts with a given name, e.g. `script.py`, in a code block with darker header:
+
+```{.python filename="script.py"}
+greeting = "Hello"
+name = input("What is your name? ")
+print(greeting, name)
+```
+
+We may ask you to run a script using the `Command Prompt` (Windows) or `Terminal` (Mac and Linux). We will show you what commands to run and will look like this:
+```{.bash filename="Terminal/Command Prompt"}
+python script.py
+```
+
+**Please note that sometimes we will skip showing the execution of scripts on the Terminal/Command Prompt box, but we will assume you to run the script on your.**
+
+In some cases we will introduce general programming concepts and structures using pseudocode, a high-level, easy-to-read syntax close to natural language. This should not be confused with Python code and cannot be executed on your machine, but it is useful to describe how your code should behave. Here there is an example:
+```
+FOR EACH sample IN my_study
+    IF (sample.value > 100)
+        DO SOMETHING
+    OTHERWISE
+        DO SOMETHING ELSE
+```
+
+
+There are some exercises along this course, and it is important you try to answer them yourself to understand how Python works. Exercises are shown in blue boxes followed by a yellow box that contains the answer of each exercise. We recommend you to try to answer each exercise yourself before looking at the solution. 
+
+::: {#exampleN .callout-note icon=false title='Exercise'}
+This is an exercise. You will need to click in the below box to see the answer.
+:::
+
+::: {#answerN .callout-caution icon=false title='Answer (click to open)' collapse="true"}
+This is the answer.
+:::
+
+Last, we will highlight important points using green boxes like this one:
+
+::: {#keypointsN .callout-tip icon=false title='Key points'}
+These are important concepts and technical notes.
+:::
+
+

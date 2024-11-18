@@ -1,0 +1,97 @@
+---
+title:  Parallel map/reduce
+---
+
+The [`concurrent.futures.ProcessPoolExecutor`](https://docs.python.org/3/library/concurrent.futures.html#processpoolexecutor) provides an excellent mechanism for the parallelisation of map/reduce style calculations. The standard `map` can be almost directly replaced with a `ProcessPoolExecutor.map` and the `reduce` function can be used as-is. Note than the reduction will not be parallelised as it is, in general, a serial operation.
+
+As we have seen though, some changes *are* needed such as putting the code in an `if __name__ == "__main__"` block. The largest remaining difference is how `ProcessPoolExecutor` treats lambda functions.
+
+## `ProcessPoolExecutor` doesn’t support lambda functions
+
+One of the annoying limitations of the current version of `multiprocessing` (the underlying module for `ProcessPoolExecutor`) is that it does not support anonymous (`lambda`) functions. The mapping function has to be created using the `def name(args)` syntax. The reason is because Python currently doesn’t pickle functions correctly (i.e. Python cannot convert the code of a function to a binary array of data that can be transmitted to the worker copies of the script. In contrast, Python can correctly pickle most argument types, so can send arguments to the workers).
+
+::: {#example1 .callout-note icon=false title='Exercise'}
+Edit your `countlines.py` script that you wrote for Part 1 so that you use `concurrent.futures` to parallelise the counting of lines. Note that you will not be able to use `lambda` in the `pool.map` function.
+:::
+
+::: {#answerN .callout-caution icon=false title='Answer' collapse="true"}
+{{< include answer_shakespeare_multi.qmd >}}
+:::
+
+
+::: {#example2 .callout-note icon=false title='Exercise'}
+Below are two functions. The first counts the number of times every word in a file appears in that file, returning the result as a dictionary (the key is the word, the value is the number of times it appears). The second function combines (reduces) two dictionaries together.
+
+```{.python filename="countwords.py"}
+import re
+
+
+def count_words(file):
+    """
+    Count the number of times every word in `file` occurs.
+
+    Args:
+        file (Path): the file to count the words in
+
+    Returns:
+        dict: a mapping of word to count
+    """
+
+    all_words = {}
+
+    text = file.read_text()
+    words = text.split()
+
+    for word in words:
+        #lowercase the word and remove all
+        #characters that are not [a-z] or hyphen
+        word = word.lower()
+        match = re.search(r"([a-z\-]+)", word)
+
+        if match:
+            word = match.groups()[0]
+
+            if word in all_words:
+                all_words[word] += 1
+            else:
+                all_words[word] = 1
+
+    return all_words
+
+
+def reduce_dicts(dict1, dict2):
+    """
+    Combine (reduce) the passed two dictionaries to return
+    a dictionary that contains the keys of both, where the
+    values are equal to the sum of values for each key
+    """
+
+    # explicitly copy the dictionary, as otherwise
+    # we risk modifying 'dict1'
+    combined = {}
+
+    for key in dict1:
+        combined[key] = dict1[key]
+
+    for key in dict2:
+        if key in combined:
+            combined[key] += dict2[key]
+        else:
+            combined[key] = dict2[key]
+
+    return combined
+```
+
+Use the above two functions to write a parallel Python script called `countwords.py` that counts how many times each word used by Shakespeare appears in all of his plays, e.g. by using the command line call
+
+```bash
+python countwords.py
+```
+
+Have your script print out every word that appears more than 2000 times across all of the plays. The words should be printed out in alphabetical order, and printed together with the number of times that they are used.
+
+:::
+
+::: {#answerN .callout-caution icon=false title='Answer' collapse="true"}
+{{< include answer_shakespeare_countwords.qmd >}}
+:::

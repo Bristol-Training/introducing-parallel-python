@@ -1,0 +1,269 @@
+---
+title: Mapping Functions
+---
+
+In many situations you would like to apply the same function to lots of different pieces of data. For example, let's create two arrays of numbers, and use our `add` function to add pairs of numbers together. In the Python Console type:
+
+
+```{python}
+def add(x, y):
+    """Simple function returns the sum of the arguments"""
+    return x + y
+```
+
+
+```{python}
+def multiply(x, y):
+    """
+    Simple function that returns the product of the
+    two arguments
+    """
+    return x * y
+```
+
+
+```{python}
+a = [1, 2, 3, 4, 5]
+b = [6, 7, 8, 9, 10]
+
+result = []
+
+for i, j in zip(a, b):
+    r = add(i, j)
+    result.append(r)
+
+print(result)
+```
+
+
+The above code has looped over every pair of numbers in the lists `a` and `b`, and has called the function `add` for each pair. Each result is appended to the list `result`, which is printed at the end of the loop.
+
+Applying the same function to every item in a list (or pair of lists) of data is really common. For example, in a molecular simulation, you may want to loop over a list of every molecule and call a `calculate_energy` function for each one. In a fluid dynamics simulation, you may want to loop over a list of grid points and call a `solve_gridpoint` function for each one. This pattern, of calling the same function for each element of a list (or set of lists) of data, is called *mapping*. In the above example, we have *mapped* the function `add` onto the lists `a` and `b`, giving us `result`.
+
+The above code mapped the function `add`. How about if we wanted to map our `diff` or `multiply` functions? One option would be to copy out this code again. A better solution would be to use functional programming to write our own mapping function.
+
+
+```{python}
+def mapper(func, arg1, arg2):
+    """
+    This will map the function 'func' to each pair
+    of arguments in the list 'arg1' and 'arg2', returning
+    the result
+    """
+
+    res = []
+
+    for i, j in zip(arg1, arg2):
+        r = func(i, j)
+        res.append(r)
+
+    return res
+```
+
+
+```{python}
+mapper(add, a, b)
+```
+
+
+Now type
+
+
+```{python}
+mapper(multiply, a, b)
+```
+
+
+Can you see how this works?
+
+The `mapper` function takes as its first argument the function to be mapped. The other arguments are the two lists of data for the mapping. The part `zip(arg1, arg2)` takes the two arguments and returns an interator which can go through them both at the same time. As soon as one of them runs out of elements, it will stop. The `mapper` function then loops through each of these pairs of data, calling `func` for each pair, and storing the result in the list `res`. This is then returned at the end.
+
+Because the `mapper` function calls the mapped function using the argument `func`, it can map any function that is passed to it, as long as that function accepts two arguments. For example, let us now create a completely different function to map:
+
+
+```{python}
+import math
+
+def calc_distance(point1, point2):
+    """
+    Function to calculate and return the distance between
+    two points
+    """
+
+    dx2 = (point1[0] - point2[0]) ** 2
+    dy2 = (point1[1] - point2[1]) ** 2
+
+    return math.sqrt(dx2 + dy2)
+```
+
+This has created a function that calculates the distance between two points. Let’s now create two lists of points and use `mapper` to control the calculation of distances between points:
+
+
+```{python}
+points1 = [(1.0, 1.0), (2.0, 2.0), (3.0, 3.0)]
+points2 = [(4.0, 4.0), (5.0, 5.0), (6.0, 6.0)]
+
+mapper(calc_distance, points1, points2)
+```
+
+
+
+As long as the function and the data are compatible, the `mapper` function will work.
+
+## Standard Map
+
+Mapping is so common and useful that it is built in as a standard Python function, called [`map`](https://docs.python.org/3/library/functions.html#map). For example:
+
+
+```{python}
+map(calc_distance, points1, points2)
+```
+
+
+
+This is perhaps a little unexpected as Python hasn’t actually given us the answer. Instead, the built-in `map` function has returned an object which is ready and waiting to perform the calculation you’ve asked, but won't actually run those calculations unitl you request the result. This can be useful because by evaluating the map “lazily”, you can avoid unnecessary computation. The technical term for the thing that has been returned is an *iterator*. You can use this object in a `for` loop just fine but you can only loop over it once.
+
+If you want to force Python to evaluate the map and give you the answers, you can turn it into a list usig the `list` function:
+
+
+```{python}
+distances = map(calc_distance, points1, points2)
+list(distances)
+```
+
+
+You should see that your `calc_distances` function has been mapped to all of the pairs of points.
+
+There is one more niggle to be aware of, and that is that an iterator object can only be used one before it is "exhausted". If we try to get the result of a map in two places we see the following:
+
+
+```{python}
+distances = map(calc_distance, points1, points2)
+print(list(distances))
+print(list(distances))
+```
+
+
+
+You see that the second time we converted `distances` to a list it created an empty list. If you need to use the result of a map in multiple places, you should convert it to a list once, and then use that list result:
+
+
+```{python}
+distances = map(calc_distance, points1, points2)
+distance_list = list(distances)
+print(distance_list)
+print(distance_list)
+```
+
+
+
+The standard `map` function behaves very similarly to your hand-written `mapper` function, returing an iterator containing the result of applying your function to each item of data.
+
+One advantage of `map` is that it knows how to handle multiple arguments. For example, let’s create a function that only maps a single argument:
+
+
+```{python}
+def square(x):
+    """
+    Simple function to return the square of
+    the passed argument
+    """
+    return x * x
+```
+
+Now, let’s try to use your handwritten `mapper` function to map `square` onto a list of numbers:
+
+
+```{python}
+numbers = [1, 2, 3, 4, 5]
+
+result = mapper(square, numbers)
+```
+
+
+
+This raises an exception since we wrote our `mapper` function so that it mapped functions that expected *two* arguments. That meant that our `mapper` function needs three arguments; the mapped function plus two lists of arguments.
+
+The standard map function can handle different numbers of arguments:
+
+
+```{python}
+result = map(square, numbers)
+
+list(result)
+```
+
+
+The standard `map` function can work with mapping functions that accept any number of arguments. If the mapping function accepts `n` arguments, then you must pass `n+1` arguments to map, i.e. the mapped function, plus `n` lists of arguments:
+
+
+```{python}
+def find_smallest(arg1, arg2, arg3):
+    """
+    Function used to return the smallest value out 
+    of 'arg1', 'arg2' and 'arg3'
+    """
+
+    return min(arg1, arg2, arg3)
+
+a = [1, 2, 3, 4, 5]
+b = [5, 4, 3, 2, 1]
+c = [1, 2, 1, 2, 1]
+
+result = map(find_smallest, a, b, c)
+
+list(result)
+```
+
+
+
+Is this output what you expect?
+
+
+::: {#exampleN .callout-note icon=false title='Exercise'}
+
+Download and unpack the file `shakespeare.tar.bz2`, e.g. type into a Python Console:
+
+```{.python}
+import urllib.request
+import tarfile
+
+urllib.request.urlretrieve("https://github.com/uob-training/introducing-parallel-python/data/shakespeare.tar.bz2", "shakespeare.tar.bz2")
+with tarfile.open("shakespeare.tar.bz2") as tar:
+    tar.extractall()
+```
+
+This has created a directory called `shakespeare` that contains the full text of many of Shakespeare’s plays.
+
+Your task is to write a Python script, called `countlines.py`, that will count the total number of lines in each of these Shakespeare plays, e.g. that can be run in the Terminal with:
+
+```bash
+python countlines.py
+```
+
+To do this, first you need a function that counts the number of lines in a file. An example functions is:
+
+```{python}
+def count_lines_in_file(file):
+    """
+    Calculate the number of lines of text in a single file
+    """
+    text = file.read_text()
+    lines = text.split("\n")
+    return len(lines)
+```
+
+Then, use the standard `map` function to count the number of lines in each Shakespeare play, printing the result as a list.
+
+You can get a sorted list of all the files in a directory called `shakespeare` with:
+
+```{python}
+from pathlib import Path
+files = sorted(Path("shakespeare").glob("*"))
+```
+:::
+
+
+::: {#answerN .callout-caution icon=false title='Answer' collapse="true"}
+{{< include answer_shakespeare_map.qmd >}}
+:::

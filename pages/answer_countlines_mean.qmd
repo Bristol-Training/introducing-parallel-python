@@ -1,0 +1,86 @@
+```{.python filename="countlines.py"}
+import glob
+import sys
+import statistics
+
+from pathlib import Path
+from concurrent.futures import ProcessPoolExecutor
+
+def count_lines_in_file(file):
+    """
+    Calculate the number of lines of text in a single file
+    """
+    text = file.read_text()
+    lines = text.split("\n")
+    return len(lines)
+
+if __name__ == "__main__":
+    # get all of the names of the plays from the command line
+    files = sorted(Path("shakespeare").glob("*"))
+
+    with ProcessPoolExecutor() as pool:
+        # map the count_lines function against all of the
+        # files listed in "filenames"
+        play_line_count = pool.map(count_lines_in_file, files)
+        
+        # convert it to a list as we need to use the result in two places.
+        play_line_count = list(play_line_count)
+
+        for f, count in zip(files, play_line_count):
+            print(f"{f} has {count} lines")
+
+    total = sum(play_line_count)
+    print(f"The total number of lines is {total}.")
+
+    average = statistics.mean(play_line_count)  # This is a new line
+    print(f"The average number of lines is {int(average)}.")  # This is a new line
+```
+
+
+
+
+```{.python}
+import urllib
+import tarfile
+
+urllib.request.urlretrieve("https://github.com/uob-training/introducing-parallel-python/data/shakespeare.tar.bz2", "shakespeare.tar.bz2")
+with tarfile.open("shakespeare.tar.bz2") as tar:
+    tar.extractall()
+```
+
+
+```bash
+python countlines.py shakespeare
+```
+
+    shakespeare/README has 3 lines
+    shakespeare/allswellthatendswell has 4516 lines
+    shakespeare/antonyandcleopatra has 5999 lines
+    shakespeare/asyoulikeit has 4123 lines
+    shakespeare/comedyoferrors has 2938 lines
+    shakespeare/coriolanus has 5837 lines
+    shakespeare/cymbeline has 5486 lines
+    shakespeare/hamlet has 6046 lines
+    shakespeare/juliuscaesar has 4108 lines
+    shakespeare/kinglear has 5526 lines
+    shakespeare/loveslabourslost has 4336 lines
+    shakespeare/macbeth has 3877 lines
+    shakespeare/measureforemeasure has 4338 lines
+    shakespeare/merchantofvenice has 3884 lines
+    shakespeare/merrywivesofwindsor has 4449 lines
+    shakespeare/midsummersnightsdream has 3116 lines
+    shakespeare/muchadoaboutnothing has 4064 lines
+    shakespeare/othello has 5425 lines
+    shakespeare/periclesprinceoftyre has 3872 lines
+    shakespeare/romeoandjuliet has 4767 lines
+    shakespeare/tamingoftheshrew has 4149 lines
+    shakespeare/tempest has 3400 lines
+    shakespeare/timonofathens has 3974 lines
+    shakespeare/titusandronicus has 3768 lines
+    shakespeare/troilusandcressida has 5444 lines
+    shakespeare/twelfthnight has 4018 lines
+    shakespeare/twogentlemenofverona has 3606 lines
+    shakespeare/winterstale has 4644 lines
+    The total number of lines is 119713.
+    The average number of lines is 4275.
+
