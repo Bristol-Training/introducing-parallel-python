@@ -303,12 +303,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>In many situations you would like to apply the same function to lots of different pieces of data. For example, let’s create two arrays of numbers, and use our <code>add</code> function to add pairs of numbers together. In the Python Console type:</p>
-<div id="cf102cf5" class="cell" data-execution_count="1">
+<div id="fa385552" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add(x, y):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Simple function returns the sum of the arguments"""</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="4f3cf4a2" class="cell" data-execution_count="2">
+<div id="4ed5a525" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> multiply(x, y):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Simple function that returns the product of the</span></span>
@@ -316,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f1446e0e" class="cell" data-execution_count="3">
+<div id="84367a68" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -334,7 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The above code has looped over every pair of numbers in the lists <code>a</code> and <code>b</code>, and has called the function <code>add</code> for each pair. Each result is appended to the list <code>result</code>, which is printed at the end of the loop.</p>
 <p>Applying the same function to every item in a list (or pair of lists) of data is really common. For example, in a molecular simulation, you may want to loop over a list of every molecule and call a <code>calculate_energy</code> function for each one. In a fluid dynamics simulation, you may want to loop over a list of grid points and call a <code>solve_gridpoint</code> function for each one. This pattern, of calling the same function for each element of a list (or set of lists) of data, is called <em>mapping</em>. In the above example, we have <em>mapped</em> the function <code>add</code> onto the lists <code>a</code> and <code>b</code>, giving us <code>result</code>.</p>
 <p>The above code mapped the function <code>add</code>. How about if we wanted to map our <code>diff</code> or <code>multiply</code> functions? One option would be to copy out this code again. A better solution would be to use functional programming to write our own mapping function.</p>
-<div id="da08c0ee" class="cell" data-execution_count="4">
+<div id="b3d1857d" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mapper(func, arg1, arg2):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">    This will map the function 'func' to each pair</span></span>
@@ -350,13 +350,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e35594c2" class="cell" data-execution_count="5">
+<div id="a6adbfb2" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mapper(add, a, b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>[7, 9, 11, 13, 15]</code></pre>
 </div>
 </div>
-<div id="9ea425ce" class="cell" data-execution_count="6">
+<div id="eadcba0f" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mapper(multiply, a, b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>[6, 14, 24, 36, 50]</code></pre>
@@ -364,7 +364,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The <code>mapper</code> function takes as its first argument the function to be mapped. The other arguments are the two lists of data for the mapping. The part <code>zip(arg1, arg2)</code> takes the two arguments and returns an interator which can go through them both at the same time. As soon as one of them runs out of elements, it will stop. The <code>mapper</code> function then loops through each of these pairs of data, calling <code>func</code> for each pair, and storing the result in the list <code>res</code>. This is then returned at the end.</p>
 <p>Because the <code>mapper</code> function calls the mapped function using the argument <code>func</code>, it can map any function that is passed to it, as long as that function accepts two arguments. For example, let us now create a completely different function to map:</p>
-<div id="03cb349a" class="cell" data-execution_count="7">
+<div id="1629df8c" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_distance(point1, point2):</span>
@@ -379,7 +379,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> math.sqrt(dx2 <span class="op">+</span> dy2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This has created a function that calculates the distance between two points. Let’s now create two lists of points and use <code>mapper</code> to control the calculation of distances between points:</p>
-<div id="ee659778" class="cell" data-execution_count="8">
+<div id="6d5fac9f" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>points1 <span class="op">=</span> [(<span class="fl">1.0</span>, <span class="fl">1.0</span>), (<span class="fl">2.0</span>, <span class="fl">2.0</span>), (<span class="fl">3.0</span>, <span class="fl">3.0</span>)]</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>points2 <span class="op">=</span> [(<span class="fl">4.0</span>, <span class="fl">4.0</span>), (<span class="fl">5.0</span>, <span class="fl">5.0</span>), (<span class="fl">6.0</span>, <span class="fl">6.0</span>)]</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -392,15 +392,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="standard-map" class="level3">
 <h3 class="anchored" data-anchor-id="standard-map">Standard Map</h3>
 <p>Mapping is so common and useful that it is built in as a standard Python function, called <a href="https://docs.python.org/3/library/functions.html#map"><code>map</code></a>. For example:</p>
-<div id="e2362d4b" class="cell" data-execution_count="9">
+<div id="cfc81ea7" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">map</span>(calc_distance, points1, points2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>&lt;map at 0x10f478310&gt;</code></pre>
+<pre><code>&lt;map at 0x11515b010&gt;</code></pre>
 </div>
 </div>
 <p>This is perhaps a little unexpected as Python hasn’t actually given us the answer. Instead, the built-in <code>map</code> function has returned an object which is ready and waiting to perform the calculation you’ve asked, but won’t actually run those calculations unitl you request the result. This can be useful because by evaluating the map “lazily”, you can avoid unnecessary computation. The technical term for the thing that has been returned is an <em>iterator</em>. You can use this object in a <code>for</code> loop just fine but you can only loop over it once.</p>
 <p>If you want to force Python to evaluate the map and give you the answers, you can turn it into a list usig the <code>list</code> function:</p>
-<div id="c6448517" class="cell" data-execution_count="10">
+<div id="d199fe4f" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> <span class="bu">map</span>(calc_distance, points1, points2)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(distances)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
@@ -409,7 +409,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>You should see that your <code>calc_distances</code> function has been mapped to all of the pairs of points.</p>
 <p>There is one more niggle to be aware of, and that is that an iterator object can only be used one before it is “exhausted”. If we try to get the result of a map in two places we see the following:</p>
-<div id="6da0d044" class="cell" data-execution_count="11">
+<div id="93448b6f" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> <span class="bu">map</span>(calc_distance, points1, points2)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(distances))</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(distances))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -419,7 +419,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>You see that the second time we converted <code>distances</code> to a list it created an empty list. If you need to use the result of a map in multiple places, you should convert it to a list once, and then use that list result:</p>
-<div id="6d6d039c" class="cell" data-execution_count="12">
+<div id="53996b0d" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> <span class="bu">map</span>(calc_distance, points1, points2)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>distance_list <span class="op">=</span> <span class="bu">list</span>(distances)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(distance_list)</span>
@@ -431,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The standard <code>map</code> function behaves very similarly to your hand-written <code>mapper</code> function, returing an iterator containing the result of applying your function to each item of data.</p>
 <p>One advantage of <code>map</code> is that it knows how to handle multiple arguments. For example, let’s create a function that only maps a single argument:</p>
-<div id="77760954" class="cell" data-execution_count="13">
+<div id="6bcda80a" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> square(x):</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Simple function to return the square of</span></span>
@@ -440,7 +440,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, let’s try to use your handwritten <code>mapper</code> function to map <code>square</code> onto a list of numbers:</p>
-<div id="d9b2f880" class="cell" data-execution_count="14">
+<div id="11b57f98" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> mapper(square, numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -458,7 +458,7 @@ Cell <span class="ansi-green-fg">In[14], line 3</span>
 </div>
 <p>This raises an exception since we wrote our <code>mapper</code> function so that it mapped functions that expected <em>two</em> arguments. That meant that our <code>mapper</code> function needs three arguments; the mapped function plus two lists of arguments.</p>
 <p>The standard map function can handle different numbers of arguments:</p>
-<div id="af923169" class="cell" data-execution_count="15">
+<div id="e846ec91" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="bu">map</span>(square, numbers)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -467,7 +467,7 @@ Cell <span class="ansi-green-fg">In[14], line 3</span>
 </div>
 </div>
 <p>The standard <code>map</code> function can work with mapping functions that accept any number of arguments. If the mapping function accepts <code>n</code> arguments, then you must pass <code>n+1</code> arguments to map, i.e.&nbsp;the mapped function, plus <code>n</code> lists of arguments:</p>
-<div id="ef77d0a5" class="cell" data-execution_count="16">
+<div id="dc2988df" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_smallest(arg1, arg2, arg3):</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Function used to return the smallest value out </span></span>
@@ -502,14 +502,14 @@ Exercise
 <div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tarfile</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>urllib.request.urlretrieve(<span class="st">"https://github.com/uob-training/introducing-parallel-python/data/shakespeare.tar.bz2"</span>, <span class="st">"shakespeare.tar.bz2"</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>urllib.request.urlretrieve(<span class="st">"https://github.com/Bristol-Training/introducing-parallel-python/raw/ecc76aedc65dc3c3c1aaf19017d27a13382cd1cc/data/shakespeare.tar.bz2"</span>, <span class="st">"shakespeare.tar.bz2"</span>)</span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> tarfile.<span class="bu">open</span>(<span class="st">"shakespeare.tar.bz2"</span>) <span class="im">as</span> tar:</span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    tar.extractall()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This has created a directory called <code>shakespeare</code> that contains the full text of many of Shakespeare’s plays.</p>
 <p>Your task is to write a Python script, called <code>countlines.py</code>, that will count the total number of lines in each of these Shakespeare plays, e.g.&nbsp;that can be run in the Terminal with:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> countlines.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To do this, first you need a function that counts the number of lines in a file. An example functions is:</p>
-<div id="4027ee2b" class="cell" data-execution_count="17">
+<div id="64ff1f11" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count_lines_in_file(<span class="bu">file</span>):</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Calculate the number of lines of text in a single file</span></span>
@@ -520,7 +520,7 @@ Exercise
 </div>
 <p>Then, use the standard <code>map</code> function to count the number of lines in each Shakespeare play, printing the result as a list.</p>
 <p>You can get a sorted list of all the files in a directory called <code>shakespeare</code> with:</p>
-<div id="9fe56545" class="cell" data-execution_count="18">
+<div id="c67e110e" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> <span class="bu">sorted</span>(Path(<span class="st">"shakespeare"</span>).glob(<span class="st">"*"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -563,7 +563,7 @@ Answer
 <div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tarfile</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>urllib.request.urlretrieve(<span class="st">"https://github.com/uob-training/introducing-parallel-python/data/shakespeare.tar.bz2"</span>, <span class="st">"shakespeare.tar.bz2"</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>urllib.request.urlretrieve(<span class="st">"https://github.com/Bristol-Training/introducing-parallel-python/raw/ecc76aedc65dc3c3c1aaf19017d27a13382cd1cc/data/shakespeare.tar.bz2"</span>, <span class="st">"shakespeare.tar.bz2"</span>)</span>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> tarfile.<span class="bu">open</span>(<span class="st">"shakespeare.tar.bz2"</span>) <span class="im">as</span> tar:</span>
 <span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    tar.extractall()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> countlines.py shakespeare</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

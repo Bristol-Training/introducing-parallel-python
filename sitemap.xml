@@ -6,11 +6,11 @@
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/pages/001-workspace-setup.html</loc>
-    <lastmod>2024-11-18T15:12:03.407Z</lastmod>
+    <lastmod>2024-11-20T13:56:00.974Z</lastmod>
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/pages/answer_shakespeare_multi.html</loc>
-    <lastmod>2024-11-18T10:34:49.458Z</lastmod>
+    <lastmod>2024-11-20T13:55:35.540Z</lastmod>
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/pages/300-multi-node-parallel-programming.html</loc>
@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/pages/answer_shakespeare_lambda.html</loc>
-    <lastmod>2024-11-18T10:34:49.457Z</lastmod>
+    <lastmod>2024-11-20T13:55:35.534Z</lastmod>
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/pages/220-pool.html</loc>
@@ -34,7 +34,7 @@
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/pages/answer_countlines_mean.html</loc>
-    <lastmod>2024-11-18T10:34:49.455Z</lastmod>
+    <lastmod>2024-11-20T13:55:35.540Z</lastmod>
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/pages/980-summary.html</loc>
@@ -46,11 +46,11 @@
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/pages/answer_shakespeare_reduce.html</loc>
-    <lastmod>2024-11-18T10:34:49.459Z</lastmod>
+    <lastmod>2024-11-20T13:55:35.540Z</lastmod>
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/pages/answer_countlines_operator.html</loc>
-    <lastmod>2024-11-18T10:34:49.455Z</lastmod>
+    <lastmod>2024-11-20T13:55:35.540Z</lastmod>
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/index.html</loc>
@@ -58,11 +58,11 @@
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/pages/120-map.html</loc>
-    <lastmod>2024-11-18T10:34:49.449Z</lastmod>
+    <lastmod>2024-11-20T13:55:35.540Z</lastmod>
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/pages/answer_countlines_sum.html</loc>
-    <lastmod>2024-11-18T10:34:49.456Z</lastmod>
+    <lastmod>2024-11-20T13:55:35.540Z</lastmod>
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/pages/230-map-reduce.html</loc>
@@ -78,7 +78,7 @@
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/pages/answer_shakespeare_map.html</loc>
-    <lastmod>2024-11-18T10:34:49.458Z</lastmod>
+    <lastmod>2024-11-20T13:55:35.554Z</lastmod>
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/pages/100-functional-programming.html</loc>
@@ -86,7 +86,7 @@
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/pages/answer_shakespeare_countwords.html</loc>
-    <lastmod>2024-11-18T10:34:49.456Z</lastmod>
+    <lastmod>2024-11-20T13:55:35.540Z</lastmod>
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/pages/210-multiprocessing.html</loc>
@@ -94,7 +94,7 @@
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/pages/answer_shakespeare_countwords_async.html</loc>
-    <lastmod>2024-11-18T10:34:49.457Z</lastmod>
+    <lastmod>2024-11-20T13:55:35.540Z</lastmod>
   </url>
   <url>
     <loc>https://Bristol-Training.github.io/introducing-parallel-python/pages/140-lambdas.html</loc>
